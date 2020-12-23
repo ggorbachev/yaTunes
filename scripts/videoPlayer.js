@@ -1,12 +1,4 @@
 export const videoPlayerInit = () => {
-/*
-video-player
-video-button__play
-video-button__stop
-video-time__passed
-video-progress
-video-time__total
-*/
 
   const videoPlayer = document.querySelector('.video-player');
   const videoButtonPlay = document.querySelector('.video-button__play');
@@ -14,6 +6,11 @@ video-time__total
   const videoTimePassed = document.querySelector('.video-time__passed');
   const videoProgress = document.querySelector('.video-progress');
   const videoTimeTotal = document.querySelector('.video-time__total');
+  const videoVolume = document.querySelector('.video-volume');
+  const videoVolumeOff = document.querySelector('.video-volume-off');
+  const videoVolumeDown = document.querySelector('.video-volume-down');
+  const videoVolumeUp = document.querySelector('.video-volume-up');
+
 
   const toggleIcon = () => {
     if (videoPlayer.paused) {
@@ -40,6 +37,10 @@ video-time__total
 
   const addZero = n => n < 10 ? '0' + n : n;
 
+  const changeValue = () => {
+    const valueVolume = videoVolume.value;
+    videoPlayer.volume = valueVolume / 100;
+  };
 
   videoPlayer.addEventListener('click', togglePlay);
   videoButtonPlay.addEventListener('click', togglePlay);
@@ -49,10 +50,11 @@ video-time__total
   videoPlayer.addEventListener('pause', toggleIcon);
 
   videoPlayer.addEventListener('timeupdate', () => {
+
     const currentTime = videoPlayer.currentTime;
     const duration = videoPlayer.duration;
 
-    videoProgress.value = (currentTime / duration) * 100
+    videoProgress.value = (currentTime / duration) * 100;
 
     let minutePassed = Math.floor(currentTime / 60);
     let secondsPassed = Math.floor(currentTime % 60);
@@ -65,11 +67,37 @@ video-time__total
     
   });
 
-  videoProgress.addEventListener('change', () => {
+  videoProgress.addEventListener('input', () => {
     const duration = videoPlayer.duration;
     const value = videoProgress.value;
 
     videoPlayer.currentTime = (value * duration) / 100;
 
+  });
+
+  videoVolume.addEventListener('input', changeValue);
+
+  changeValue();
+
+  videoVolumeOff.addEventListener('click', () => {
+    let currentVolume;
+    if (videoVolume.value != 0 ) {
+      currentVolume = videoVolume.value;
+      videoVolume.value = 0;
+    } else {
+      videoVolume.value = currentVolume;
+    }
+    changeValue();
+  });
+
+  videoVolumeDown.addEventListener('click', () => {
+    videoVolume.value -= 5;
+    changeValue();
+  });
+  videoVolumeUp.addEventListener('click', () => {
+    let currentVolume = +(videoVolume.value);
+    currentVolume += 5;
+    videoVolume.value = currentVolume;
+    changeValue();
   });
 }
