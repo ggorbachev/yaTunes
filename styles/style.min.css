@@ -667,4 +667,7 @@ input.video-volume {
 .fa-volume-off {
   margin-right: 10px;
 }
+.video-fullscreen {
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.min.css.map */
