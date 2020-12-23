@@ -26,7 +26,8 @@ export const videoPlayerInit = () => {
     }
   };
 
-  const togglePlay = () => {
+  const togglePlay = event => {
+    event.preventDefault();
     if (videoPlayer.paused) {
       videoPlayer.play();
     } else {
@@ -103,5 +104,9 @@ export const videoPlayerInit = () => {
     currentVolume += 5;
     videoVolume.value = currentVolume;
     changeValue();
+  });
+
+  videoPlayer.addEventListener('volumechange', ()=> {
+    videoVolume.value = Math.round(videoPlayer.volume * 100);
   });
 }
