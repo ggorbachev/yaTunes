@@ -131,21 +131,23 @@
                 value="0"
               />
               <p class="video-time video-time__total">00:00</p>
-              <span class="video-volume-off fa fa-volume-off video-icon"></span>
               <span
-                class="video-volume-down fa fa-volume-down video-icon"
+                class="video-volume-off fa fa-volume-off control-icon"
+              ></span>
+              <span
+                class="video-volume-down fa fa-volume-down control-icon"
               ></span>
               <input
                 type="range"
-                class="video-volume"
+                class="video-volume control-volume"
                 min="0"
                 max="100"
                 step="1"
                 value="50"
               />
-              <span class="video-volume-up fa fa-volume-up video-icon"></span>
+              <span class="video-volume-up fa fa-volume-up control-icon"></span>
               <span
-                class="video-fullscreen fa fa-window-maximize video-icon"
+                class="video-fullscreen fa fa-window-maximize control-icon"
               ></span>
             </nav>
           </div>
@@ -321,6 +323,17 @@
         </div>
         <footer class="footer-fix radio-footer">
           <button class="radio-stop fa fa-play"></button>
+          <span class="radio-volume-down fa fa-volume-down control-icon"></span>
+          <input
+            type="range"
+            class="radio-volume control-volume"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+          />
+          <span class="radio-volume-up fa fa-volume-up control-icon"></span>
+          <span class="radio-mute fa fa-volume-off control-icon"></span>
         </footer>
       </article>
     </main>

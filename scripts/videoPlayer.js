@@ -109,4 +109,9 @@ export const videoPlayerInit = () => {
   videoPlayer.addEventListener('volumechange', ()=> {
     videoVolume.value = Math.round(videoPlayer.volume * 100);
   });
+
+  videoPlayerInit.stop = () => {
+    videoPlayer.pause();
+    toggleIcon();
+  };
 }
